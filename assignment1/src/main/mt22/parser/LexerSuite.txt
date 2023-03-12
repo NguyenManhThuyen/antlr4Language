@@ -1,0 +1,686 @@
+import unittest
+from TestUtils import TestLexer
+
+
+class LexerSuite(unittest.TestCase):
+
+    # TEST FLOATLIT: (oke)
+    def test_0(self):
+        self.assertTrue(TestLexer.test("0e123", "0e123,<EOF>", 100))
+
+    def test_1(self):
+        self.assertTrue(TestLexer.test("1.0", "1.0,<EOF>", 101))
+
+    def test_2(self):
+        self.assertTrue(TestLexer.test("0.1", "0.1,<EOF>", 102))
+
+    def test_3(self):
+        self.assertTrue(TestLexer.test("123.456", "123.456,<EOF>", 103))
+
+    def test_4(self):
+        self.assertTrue(TestLexer.test("1e1", "1e1,<EOF>", 104))
+
+    def test_5(self):
+        self.assertTrue(TestLexer.test(".1", ".,1,<EOF>", 105))
+<oke>
+# #     def test_float_7(self):
+# #         self.assertTrue(TestLexer.test("1.1e1", "1.1e1,<EOF>", 107))
+
+# #     # def test_float_8(self):
+# #     #     self.assertTrue(TestLexer.test(
+# #     #         "123_45_6.78_9", "123456.789,<EOF>", 108))
+
+# #     def test_float_9(self):
+# #         self.assertTrue(TestLexer.test("00.1", "Error Token 0", 109))
+
+# #     def test_float_10(self):
+# #         self.assertTrue(TestLexer.test("0.0", "0.0,<EOF>", 110))
+
+# #     # def test_float_11(self):
+# #     #     self.assertTrue(TestLexer.test("1.23e4_56", "1.23e456,<EOF>", 111))
+
+# #     def test_float_12(self):
+# #         self.assertTrue(TestLexer.test("1.23e456", "1.23e456,<EOF>", 112))
+
+# #     # TEST INTLIT
+
+# #     def test_intlit_1(self):
+# #         self.assertTrue(TestLexer.test("7", "7,<EOF>", 113))
+
+# #     def test_intlit_2(self):
+# #         self.assertTrue(TestLexer.test("123", "123,<EOF>", 114))
+
+# #     def test_intlit_3(self):
+# #         self.assertTrue(TestLexer.test("0123", "Error Token 0", 115))
+
+# #     def test_intlit_4(self):
+# #         self.assertTrue(TestLexer.test("12300", "12300,<EOF>", 116))
+
+# #     def test_intlit_5(self):
+# #         self.assertTrue(TestLexer.test("1_234_567", "1234567,<EOF>", 117))
+
+# #     def test_intlit_6(self):
+# #         self.assertTrue(TestLexer.test("1__2__3", "1,__2__3,<EOF>", 118))
+
+# #     def test_intlit_7(self):
+# #         self.assertTrue(TestLexer.test("_123", "_123,<EOF>", 119))
+
+# #     def test_intlit_8(self):
+# #         self.assertTrue(TestLexer.test("123_", "123,_,<EOF>", 120))
+
+# #     def test_intlit_9(self):
+# #         self.assertTrue(TestLexer.test("_", "_,<EOF>", 121))
+
+# #     def test_intlit_10(self):
+# #         self.assertTrue(TestLexer.test("0", "0,<EOF>", 122))
+
+# #     def test_intlit_11(self):
+# #         self.assertTrue(TestLexer.test("0000", "Error Token 0", 123))
+
+# #     def test_intlit_12(self):
+# #         self.assertTrue(TestLexer.test("00012300", "Error Token 0", 124))
+
+# #     # TEST IDENTIFIER: (OKE)
+
+# #     def test_identifiers_1(self):
+# #         self.assertTrue(TestLexer.test("a b c", "a,b,c,<EOF>", 125))
+
+# #     def test_identifiers_2(self):
+# #         self.assertTrue(TestLexer.test("x y z", "x,y,z,<EOF>", 126))
+
+# #     # TEST NUMBER LITERALS (FULL)
+
+# #     def test_literals_1(self):
+# #         self.assertTrue(TestLexer.test("0 1 2 3 4", "0,1,2,3,4,<EOF>", 127))
+
+# #     def test_literals_2(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "10 20 30 40", "10,20,30,40,<EOF>", 128))
+
+# #     def test_literals_3(self):
+# #         self.assertTrue(TestLexer.test("1.0 2.5 3.1415 100.123",
+# #                         "1.0,2.5,3.1415,100.123,<EOF>", 129))
+
+# #     def test_literals_4(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "\"Hello, World!\"", "Hello, World!,<EOF>", 130))
+
+# #     def test_literals_5(self):
+# #         self.assertTrue(TestLexer.test("\"12345\"", "12345,<EOF>", 131))
+
+# #     # TEST INVALID ID
+
+# #     def test_invalid_identifier_1(self):
+# #         self.assertTrue(TestLexer.test("1abc", "1,abc,<EOF>", 132))
+
+# #     def test_invalid_identifier_2(self):
+# #         self.assertTrue(TestLexer.test("_abc", "_abc,<EOF>", 133))
+
+# #     def test_invalid_identifier_3(self):
+# #         self.assertTrue(TestLexer.test("ab c", "ab,c,<EOF>", 134))
+
+# #     def test_invalid_identifier_4(self):
+# #         self.assertTrue(TestLexer.test("aBc", "aBc,<EOF>", 135))
+
+# #     def test_invalid_identifier_5(self):
+# #         self.assertTrue(TestLexer.test("a%bc", "a,%,bc,<EOF>", 136))
+
+# #     def test_invalid_identifier_6(self):
+# #         self.assertTrue(TestLexer.test("a.bc", "a,.,bc,<EOF>", 137))
+
+# #     def test_invalid_identifier_7(self):
+# #         self.assertTrue(TestLexer.test("ab+c", "ab,+,c,<EOF>", 138))
+
+# #     def test_invalid_identifier_8(self):
+# #         self.assertTrue(TestLexer.test("a^bc", "a,Error Token ^", 139))
+
+# #     def test_invalid_identifier_10(self):
+# #         self.assertTrue(TestLexer.test("a_bc", "a_bc,<EOF>", 140))
+
+# #     # TEST ID (OKE)
+
+# #     def test_keyword_1(self):
+# #         self.assertTrue(TestLexer.test("if a == b: pass",
+# #                         "if,a,==,b,:,pass,<EOF>", 141))
+
+# #     def test_keyword_2(self):
+# #         self.assertTrue(TestLexer.test("if a == b: pass\nelse: pass",
+# #                         "if,a,==,b,:,pass,else,:,pass,<EOF>", 142))
+
+# #     def test_keyword_3(self):
+# #         self.assertTrue(TestLexer.test("boolean break continue else for float if int return void while",
+# #                         "boolean,break,continue,else,for,float,if,int,return,void,while,<EOF>", 143))
+
+# #     def test_keyword_4(self):
+# #         self.assertTrue(TestLexer.test("do while", "do,while,<EOF>", 144))
+
+# #     def test_keyword_5(self):
+# #         self.assertTrue(TestLexer.test("TRUE FALSE", "TRUE,FALSE,<EOF>", 145))
+
+# #     # TEST OPERATOR (OKE)
+
+# #     def test_plus_operator(self):
+# #         self.assertTrue(TestLexer.test("a + b", "a,+,b,<EOF>", 146))
+
+# #     def test_minus_operator(self):
+# #         self.assertTrue(TestLexer.test("a - b", "a,-,b,<EOF>", 147))
+
+# #     def test_multiply_operator(self):
+# #         self.assertTrue(TestLexer.test("a * b", "a,*,b,<EOF>", 148))
+
+# #     def test_divide_operator(self):
+# #         self.assertTrue(TestLexer.test("a / b", "a,/,b,<EOF>", 149))
+
+# #     def test_modulo_operator(self):
+# #         self.assertTrue(TestLexer.test("a % b", "a,%,b,<EOF>", 150))
+
+# #     def test_assign_operator(self):
+# #         self.assertTrue(TestLexer.test("a = b", "a,=,b,<EOF>", 151))
+
+# #     def test_equal_operator(self):
+# #         self.assertTrue(TestLexer.test("a == b", "a,==,b,<EOF>", 152))
+
+# #     def test_not_equal_operator(self):
+# #         self.assertTrue(TestLexer.test("a != b", "a,!=,b,<EOF>", 153))
+
+# #     def test_less_than_operator(self):
+# #         self.assertTrue(TestLexer.test("a < b", "a,<,b,<EOF>", 154))
+
+# #     def test_less_than_or_equal_operator(self):
+# #         self.assertTrue(TestLexer.test("a <= b", "a,<=,b,<EOF>", 155))
+
+# #     def test_greater_than_operator(self):
+# #         self.assertTrue(TestLexer.test("a > b", "a,>,b,<EOF>", 156))
+
+# #     def test_greater_than_or_equal_operator(self):
+# #         self.assertTrue(TestLexer.test("a >= b", "a,>=,b,<EOF>", 157))
+
+# #     def test_logical_and_operator(self):
+# #         self.assertTrue(TestLexer.test("a and b", "a,and,b,<EOF>", 158))
+
+# #     def test_logical_or_operator(self):
+# #         self.assertTrue(TestLexer.test("a or b", "a,or,b,<EOF>", 159))
+
+# #     def test_logical_not_operator(self):
+# #         self.assertTrue(TestLexer.test("not a", "not,a,<EOF>", 160))
+
+# #     def test_left_parenthesis(self):
+# #         self.assertTrue(TestLexer.test("( a + b )", "(,a,+,b,),<EOF>", 161))
+
+# #     def test_right_parenthesis(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "( a + b ) * c", "(,a,+,b,),*,c,<EOF>", 162))
+
+# #     def test_comma_punctuation(self):
+# #         self.assertTrue(TestLexer.test("a, b, c", "a,,,b,,,c,<EOF>", 163))
+
+# #     def test_colon_punctuation(self):
+# #         self.assertTrue(TestLexer.test("if a == b: pass",
+# #                         "if,a,==,b,:,pass,<EOF>", 164))
+
+# #     def test_semicolon_punctuation(self):
+# #         self.assertTrue(TestLexer.test("a = b; print(a)",
+# #                         "a,=,b,;,print,(,a,),<EOF>", 165))
+
+# #     # TEST PUNCTUATIONS: <oke>
+
+# #     def test_punctuation_1(self):
+# #         self.assertTrue(TestLexer.test(",", ",,<EOF>", 166))
+
+# #     def test_punctuation_2(self):
+# #         self.assertTrue(TestLexer.test(";", ";,<EOF>", 167))
+
+# #     def test_punctuation_3(self):
+# #         self.assertTrue(TestLexer.test(":", ":,<EOF>", 168))
+
+# #     def test_punctuation_4(self):
+# #         self.assertTrue(TestLexer.test("(", "(,<EOF>", 169))
+
+# #     def test_punctuation_5(self):
+# #         self.assertTrue(TestLexer.test(")", "),<EOF>", 170))
+
+# #     # TEST BRACKETS
+
+# #     def test_brackets_1(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "{ } [ ] ( )", "{,},[,],(,),<EOF>", 171))
+
+# #     def test_brackets_2(self):
+# #         self.assertTrue(TestLexer.test("({})[]", "(,{,},),[,],<EOF>", 172))
+
+# #     def test_special_chars_1(self):
+# #         self.assertTrue(TestLexer.test("{", "{,<EOF>", 173))
+
+# #     def test_special_chars_2(self):
+# #         self.assertTrue(TestLexer.test("}", "},<EOF>", 174))
+
+# #     def test_special_chars_3(self):
+# #         self.assertTrue(TestLexer.test(",", ",,<EOF>", 175))
+
+# #     # TEST COMMENT
+# #     # Test C-style comment
+# #     def test_c_style_comment_1(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "/* this is a comment */", "<EOF>", 176))
+
+# #     def test_c_style_comment_2(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "/* this is a\nmulti-line\ncomment */", "<EOF>", 177))
+
+# #     def test_c_style_comment_3(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "a=5/* this is a comment */b=6", "a,=,5,b,=,6,<EOF>", 178))
+
+# #     def test_c_style_comment_4(self):
+# #         self.assertTrue(TestLexer.test("/* this is not a comment",
+# #                         "/,*,this,is,not,a,comment,<EOF>", 179))
+
+# #     # Test C++-style comment
+# #     def test_cpp_style_comment_1(self):
+# #         self.assertTrue(TestLexer.test("// this is a comment", "<EOF>", 180))
+
+# #     def test_cpp_style_comment_2(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "// this is a comment\na=5", "a,=,5,<EOF>", 181))
+
+# #     def test_cpp_style_comment_3(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "a=5// this is a comment\nb=6", "a,=,5,b,=,6,<EOF>", 182))
+
+# #     def test_cpp_style_comment_4(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "// this is not a comment", "<EOF>", 183))
+
+# #     # Test C-style and C++-style comment
+# #     def test_comment_1(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "a=5; /* this is a comment */ b=6", "a,=,5,;,b,=,6,<EOF>", 184))
+
+# #     def test_comment_2(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "a=5; // this is a comment\nb=6", "a,=,5,;,b,=,6,<EOF>", 185))
+
+# #     def test_comment_3(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "/* this is a comment */ a=5; // this is a comment\nb=6", "a,=,5,;,b,=,6,<EOF>", 186))
+
+# #     def test_comment_4(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "a=5; /* this is a comment // nested comment */ b=6", "a,=,5,;,b,=,6,<EOF>", 187))
+
+# #     def test_comment_5(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "a=5; /* this is a\nmulti-line\ncomment */ b=6", "a,=,5,;,b,=,6,<EOF>", 188))
+
+# #     def test_comment_6(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "// this is a comment\n/* this is a comment */\na=5; b=6", "a,=,5,;,b,=,6,<EOF>", 189))
+
+# #     def test_comment_7(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "/* this is a comment */ a=5; // this is a comment\nb=6", "a,=,5,;,b,=,6,<EOF>", 190))
+
+# #     def test_comment_8(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "a=5;// this is a comment", "a,=,5,;,<EOF>", 191))
+
+# #     def test_comment_9(self):
+# #         self.assertTrue(TestLexer.test(
+# #             "a=5/* this is a comment */", "a,=,5,<EOF>", 192))
+
+# #     # TEST COMPLEX EXPRESSION
+
+# #     def test_expression_1(self):
+# #         self.assertTrue(TestLexer.test("1 + 2 - 3", "1,+,2,-,3,<EOF>", 193))
+
+# #     def test_expression_2(self):
+# #         self.assertTrue(TestLexer.test("2 * 3 / 4", "2,*,3,/,4,<EOF>", 194))
+
+# #     def test_expression_3(self):
+# #         self.assertTrue(TestLexer.test("2 * (3 + 4) / (5 - 1)",
+# #                         "2,*,(,3,+,4,),/,(,5,-,1,),<EOF>", 195))
+
+# #     def test_expression_4(self):
+# #         self.assertTrue(TestLexer.test("x < y", "x,<,y,<EOF>", 196))
+
+# #     def test_expression_5(self):
+# #         self.assertTrue(TestLexer.test("x > y", "x,>,y,<EOF>", 197))
+
+# #     def test_expression_6(self):
+# #         self.assertTrue(TestLexer.test("x <= y", "x,<=,y,<EOF>", 198))
+
+# #     # TEST ILLEGAL
+
+# #     # def test_illegal_1(self):
+# #     #     self.assertTrue(TestLexer.test("\"This is a string\n\"",
+# #     #                     "Illegal Escape In String: This is a string", 199))
+# import unittest
+# from TestUtils import TestLexer
+
+<OKE>
+# class LexerSuite(unittest.TestCase):
+#     # test identifer
+#     def test1(self):
+#         self.assertTrue(TestLexer.test('firstName', 'firstName,<EOF>', 101))
+
+#     def test2(self):
+#         self.assertTrue(TestLexer.test('_age', '_age,<EOF>', 102))
+
+#     def test3(self):
+#         self.assertTrue(TestLexer.test(
+#             'userDetails23', 'userDetails23,<EOF>', 103))
+
+#     def test4(self):
+#         self.assertTrue(TestLexer.test('WriteLn', 'WriteLn,<EOF>', 104))
+
+#     def test5(self):
+#         self.assertTrue(TestLexer.test('_123', '_123,<EOF>', 105))
+
+#     def test6(self):
+#         self.assertTrue(TestLexer.test('name_', 'name_,<EOF>', 106))
+
+#     def test7(self):
+#         self.assertTrue(TestLexer.test('user_name1', 'user_name1,<EOF>', 107))
+
+#     def test8(self):
+#         self.assertTrue(TestLexer.test('_123', '_123,<EOF>', 108))
+
+#     def test9(self):
+#         self.assertTrue(TestLexer.test('$user', 'Error Token $', 109))
+
+#     def test10(self):
+#         self.assertTrue(TestLexer.test('user#123', 'user,Error Token #', 110))
+
+#     # test keywords
+#     def test11(self):
+#         self.assertTrue(TestLexer.test('auto', 'auto,<EOF>', 111))
+
+#     def test12(self):
+#         self.assertTrue(TestLexer.test('break', 'break,<EOF>', 112))
+
+#     def test13(self):
+#         self.assertTrue(TestLexer.test('boolean', 'boolean,<EOF>', 113))
+
+#     def test14(self):
+#         self.assertTrue(TestLexer.test('do', 'do,<EOF>', 114))
+
+#     def test15(self):
+#         self.assertTrue(TestLexer.test('else', 'else,<EOF>', 115))
+
+#     def test16(self):
+#         self.assertTrue(TestLexer.test('false', 'false,<EOF>', 116))
+
+#     def test17(self):
+#         self.assertTrue(TestLexer.test('float', 'float,<EOF>', 117))
+
+#     def test18(self):
+#         self.assertTrue(TestLexer.test('for', 'for,<EOF>', 118))
+
+#     def test19(self):
+#         self.assertTrue(TestLexer.test('function', 'function,<EOF>', 119))
+
+#     def test20(self):
+#         self.assertTrue(TestLexer.test('if', 'if,<EOF>', 120))
+
+#     def test21(self):
+#         self.assertTrue(TestLexer.test('integer', 'integer,<EOF>', 121))
+
+#     def test22(self):
+#         self.assertTrue(TestLexer.test('return', 'return,<EOF>', 122))
+
+#     def test23(self):
+#         self.assertTrue(TestLexer.test('string', 'string,<EOF>', 123))
+
+#     def test24(self):
+#         self.assertTrue(TestLexer.test('true', 'true,<EOF>', 124))
+
+#     def test25(self):
+#         self.assertTrue(TestLexer.test('while', 'while,<EOF>', 125))
+
+#     def test26(self):
+#         self.assertTrue(TestLexer.test('void', 'void,<EOF>', 126))
+
+#     def test27(self):
+#         self.assertTrue(TestLexer.test('out', 'out,<EOF>', 127))
+
+#     def test28(self):
+#         self.assertTrue(TestLexer.test('continue', 'continue,<EOF>', 128))
+
+#     def test29(self):
+#         self.assertTrue(TestLexer.test('inherit', 'inherit,<EOF>', 129))
+
+#     def test30(self):
+#         self.assertTrue(TestLexer.test('array', 'array,<EOF>', 130))
+<OKE>
+#     # test Operators
+#     def test31(self):
+#         self.assertTrue(TestLexer.test('+', '+,<EOF>', 131))
+
+#     def test32(self):
+#         self.assertTrue(TestLexer.test('-', '-,<EOF>', 132))
+
+#     def test33(self):
+#         self.assertTrue(TestLexer.test('*', '*,<EOF>', 133))
+
+#     def test34(self):
+#         self.assertTrue(TestLexer.test('/', '/,<EOF>', 134))
+
+#     def test35(self):
+#         self.assertTrue(TestLexer.test('%', '%,<EOF>', 135))
+
+#     def test36(self):
+#         self.assertTrue(TestLexer.test('!', '!,<EOF>', 136))
+
+#     def test37(self):
+#         self.assertTrue(TestLexer.test('&&', '&&,<EOF>', 137))
+
+#     def test38(self):
+#         self.assertTrue(TestLexer.test('||', '||,<EOF>', 138))
+
+#     def test39(self):
+#         self.assertTrue(TestLexer.test('==', '==,<EOF>', 139))
+
+#     def test40(self):
+#         self.assertTrue(TestLexer.test('!=', '!=,<EOF>', 140))
+
+#     def test41(self):
+#         self.assertTrue(TestLexer.test('<', '<,<EOF>', 141))
+
+#     def test42(self):
+#         self.assertTrue(TestLexer.test('<=', '<=,<EOF>', 142))
+
+#     def test43(self):
+#         self.assertTrue(TestLexer.test('>', '>,<EOF>', 143))
+
+#     def test44(self):
+#         self.assertTrue(TestLexer.test('>=', '>=,<EOF>', 144))
+
+#     def test45(self):
+#         self.assertTrue(TestLexer.test('::', '::,<EOF>', 145))
+<OKE>
+#     # test Seperators
+#     def test46(self):
+#         self.assertTrue(TestLexer.test('(', '(,<EOF>', 146))
+
+#     def test47(self):
+#         self.assertTrue(TestLexer.test(')', '),<EOF>', 147))
+
+#     def test48(self):
+#         self.assertTrue(TestLexer.test('[', '[,<EOF>', 148))
+
+#     def test49(self):
+#         self.assertTrue(TestLexer.test(']', '],<EOF>', 149))
+
+#     def test50(self):
+#         self.assertTrue(TestLexer.test('}', '},<EOF>', 150))
+
+#     def test51(self):
+#         self.assertTrue(TestLexer.test('{', '{,<EOF>', 151))
+
+#     def test52(self):
+#         self.assertTrue(TestLexer.test('.', '.,<EOF>', 152))
+
+#     def test53(self):
+#         self.assertTrue(TestLexer.test(',', ',,<EOF>', 153))
+
+#     def test54(self):
+#         self.assertTrue(TestLexer.test(';', ';,<EOF>', 154))
+
+#     def test55(self):
+#         self.assertTrue(TestLexer.test(':', ':,<EOF>', 155))
+
+#     def test56(self):
+#         self.assertTrue(TestLexer.test('=', '=,<EOF>', 156))
+<OKE>
+#     # Literals
+#     # Interger
+#     def test57(self):
+#         self.assertTrue(TestLexer.test('1234', '1234,<EOF>', 157))
+
+#     def test58(self):
+#         self.assertTrue(TestLexer.test('1_72', '172,<EOF>', 158))
+
+#     def test59(self):
+#         self.assertTrue(TestLexer.test('1_234_567', '1234567,<EOF>', 159))
+
+#     def test60(self):
+#         self.assertTrue(TestLexer.test('12_34', '1234,<EOF>', 160))
+
+#     def test61(self):
+#         self.assertTrue(TestLexer.test('12__34', '12,__34,<EOF>', 161))
+
+#     # def test62(self):
+#     #     self.assertTrue(TestLexer.test('0123', '0,123,<EOF>', 162))
+
+#     def test63(self):
+#         self.assertTrue(TestLexer.test('2352_', '2352,_,<EOF>', 163))
+
+#     def test64(self):
+#         self.assertTrue(TestLexer.test('1_23_', '123,_,<EOF>', 164))
+
+#     def test65(self):
+#         self.assertTrue(TestLexer.test('_12_3', '_12_3,<EOF>', 165))
+
+#     def test66(self):
+#         self.assertTrue(TestLexer.test('123_', '123,_,<EOF>', 166))
+
+#     # test float
+#     def test67(self):
+#         self.assertTrue(TestLexer.test('1_234.567', '1234.567,<EOF>', 167))
+
+#     def test68(self):
+#         self.assertTrue(TestLexer.test('1_234.5e67', '1234.5e67,<EOF>', 168))
+
+#     def test69(self):
+#         self.assertTrue(TestLexer.test('1_234.56e-7', '1234.56e-7,<EOF>', 169))
+
+#     def test70(self):
+#         self.assertTrue(TestLexer.test('1_234.56E-7', '1234.56E-7,<EOF>', 170))
+
+#     def test71(self):
+#         self.assertTrue(TestLexer.test('1.2e3', '1.2e3,<EOF>', 171))
+
+#     def test72(self):
+#         self.assertTrue(TestLexer.test('1.2e-3', '1.2e-3,<EOF>', 172))
+
+#     def test73(self):
+#         self.assertTrue(TestLexer.test('1.2E3', '1.2E3,<EOF>', 173))
+
+#     def test74(self):
+#         self.assertTrue(TestLexer.test('7E-10', '7E-10,<EOF>', 174))
+
+#     def test75(self):
+#         self.assertTrue(TestLexer.test('7e-10', '7e-10,<EOF>', 175))
+
+#     def test76(self):
+#         self.assertTrue(TestLexer.test('7e10', '7e10,<EOF>', 176))
+
+#     def test77(self):
+#         self.assertTrue(TestLexer.test('3_4e5', '34e5,<EOF>', 177))
+
+#     def test78(self):
+#         self.assertTrue(TestLexer.test('1.234', '1.234,<EOF>', 178))
+
+#     # def test79(self):
+#     #     self.assertTrue(TestLexer.test('1.e234', '1,.,e234,<EOF>', 179))
+
+#     # test string
+#     def test80(self):
+#         self.assertTrue(TestLexer.test('""', ',<EOF>', 180))
+
+#     def test81(self):
+#         self.assertTrue(TestLexer.test('" "', ' ,<EOF>', 181))
+
+#     def test82(self):
+#         self.assertTrue(TestLexer.test(
+#             '"Hello, World!"', 'Hello, World!,<EOF>', 182))
+
+#     def test83(self):
+#         self.assertTrue(TestLexer.test(
+#             '"HELLO, WORLD!"', 'HELLO, WORLD!,<EOF>', 183))
+
+#     def test84(self):
+#         self.assertTrue(TestLexer.test('"The quick brown fox jumps over the lazy dog"',
+#                         'The quick brown fox jumps over the lazy dog,<EOF>', 184))
+
+#     def test85(self):
+#         self.assertTrue(TestLexer.test('"1234"', '1234,<EOF>', 185))
+
+#     def test86(self):
+#         self.assertTrue(TestLexer.test('"dat123"', 'dat123,<EOF>', 186))
+
+#     def test87(self):
+#         self.assertTrue(TestLexer.test(
+#             '"h3llo W0rld!"', 'h3llo W0rld!,<EOF>', 187))
+
+#     def test88(self):
+#         self.assertTrue(TestLexer.test(
+#             '"dat dep trai"', 'dat dep trai,<EOF>', 188))
+
+#     def test89(self):
+#         self.assertTrue(TestLexer.test(
+#             '"Hello World"', 'Hello World,<EOF>', 189))
+
+#     def test90(self):
+#         self.assertTrue(TestLexer.test('"Line 1\\nnLine 2"',
+#                         'Line 1\\nnLine 2,<EOF>', 190))
+
+#     def test91(self):
+#         self.assertTrue(TestLexer.test(
+#             '"Line 1\\tLine 2"', 'Line 1\\tLine 2,<EOF>', 191))
+
+#     def test92(self):
+#         self.assertTrue(TestLexer.test(
+#             '"Line 1\\bLine 2"', 'Line 1\\bLine 2,<EOF>', 192))
+
+#     def test93(self):
+#         self.assertTrue(TestLexer.test(
+#             '"Line 1\\fLine 2"', 'Line 1\\fLine 2,<EOF>', 193))
+
+#     def test94(self):
+#         self.assertTrue(TestLexer.test(
+#             '"Line 1\\rLine 2"', 'Line 1\\rLine 2,<EOF>', 194))
+
+#     def test95(self):
+#         self.assertTrue(TestLexer.test('"Line 1\\\'Line 2"',
+#                         "Line 1\\\'Line 2,<EOF>", 195))
+
+#     def test96(self):
+#         self.assertTrue(TestLexer.test('"Line 1\\\\Line 2"',
+#                         'Line 1\\\\Line 2,<EOF>', 196))
+
+#     def test97(self):
+#         self.assertTrue(TestLexer.test('"He asked me: \\"Where is \\"John?\\""',
+#                         'He asked me: \\"Where is \\"John?\\",<EOF>', 197))
+
+#     def test98(self):
+#         self.assertTrue(TestLexer.test('"Line 1\\tLine 2\\nLine 3\\bLine 4"',
+#                         'Line 1\\tLine 2\\nLine 3\\bLine 4,<EOF>', 198))
+
+#     def test99(self):
+#         self.assertTrue(TestLexer.test('a, b, c: integer = 3, 4,6;',
+#                         'a,,,b,,,c,:,integer,=,3,,,4,,,6,;,<EOF>', 199))
+
+#     def test100(self):
+#         self.assertTrue(TestLexer.test('main: function void () {}',
+#                         'main,:,function,void,(,),{,},<EOF>', 200))
